@@ -1,0 +1,11 @@
+<form (ngSubmit)="onSubmit()" #form="ngForm">
+  <div>
+    <label for="searchTerm">Search Term:</label>
+    <input type="text" id="searchTerm" name="searchTerm" [(ngModel)]="searchTerm" required minlength="2" #searchTermInput="ngModel">
+    <div *ngIf="searchTermInput.invalid && (searchTermInput.dirty || searchTermInput.touched)">
+      <div *ngIf="searchTermInput.errors.required">Search Term is required.</div>
+      <div *ngIf="searchTermInput.errors.minlength">Search Term must be at least 2 characters long.</div>
+    </div>
+  </div>
+  <button type="submit" [disabled]="form.invalid">Query</button>
+</form>
